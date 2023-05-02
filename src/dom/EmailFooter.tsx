@@ -38,7 +38,7 @@ export default function EmailFooter<T>({
                     : ""}
             </td>
             <td style="text-align: right">
-                { poweredBy && <a style={linkStyle} href={poweredBy}  target="_blank">{poweredByLink}</a>}
+                { poweredBy && <a style={linkStyle} href={poweredByLink}  target="_blank">{poweredBy}</a>}
             </td>
         </tr>
         <tr>
