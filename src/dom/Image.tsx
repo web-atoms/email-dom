@@ -1,11 +1,13 @@
 import XNode from "@web-atoms/core/dist/core/XNode";
 import IXStyle from "../core/IXStyle";
+import IEmailElementStyle from "../style/IEmailElementStyle";
+import StyleHelper from "./StyleHelper";
+import mergeStyle from "../style/mergeStyle";
 
-export interface IImageProperties {
+export interface IImageProperties extends IEmailElementStyle {
     src: string;
     alt: string;
     className?: string;
-    style?: IXStyle;
     tooltip?: string;
     link?: string;
     linkTarget?: "_blank" | "_top";
@@ -13,31 +15,47 @@ export interface IImageProperties {
     linkStyle?: IXStyle;
 }
 
-export default function Image(prop: IImageProperties): XNode {
+export default function Image({
+    alt,
+    tooltip = alt,
+    link,
+    linkTarget,
+    linkClassName,
+    linkStyle,
+    src,
+    className,
+    style,
+    ... a
+}: IImageProperties): XNode {
 
-    prop.tooltip = prop.tooltip || prop.alt;
+    if (link) {
 
-    if (prop.link) {
+        linkStyle = mergeStyle({
+            border: "none"
+        }, linkStyle);
+
         return <a
-            href={prop.link}
-            target={prop.linkTarget}
-            class={prop.linkClassName}
-            style="border: none">
+            href={link}
+            target={linkTarget}
+            class={linkClassName}
+            style={StyleHelper.styleToString(linkStyle)}
+            { ... a}>
             <img
-                src={prop.src}
-                alt={prop.alt}
-                title={prop.tooltip}
-                class={prop.className}
-                style={prop.style}
+                src={src}
+                alt={alt}
+                title={tooltip}
+                class={className}
+                style={StyleHelper.styleToString(style)}
                 />
         </a>;
     }
 
     return <img
-        src={prop.src}
-        alt={prop.alt}
-        title={prop.tooltip}
-        class={prop.className}
-        style={prop.style}
+        src={src}
+        alt={alt}
+        title={tooltip}
+        class={className}
+        style={StyleHelper.styleToString(style)}
+        { ... a}
         />;
 }

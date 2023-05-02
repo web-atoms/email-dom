@@ -1,7 +1,6 @@
 import XNode from "@web-atoms/core/dist/core/XNode";
 import { IStyleDeclaration } from "@web-atoms/core/dist/web/styles/IStyleDeclaration";
 
-import IEmailModel from "../model/IEmailModel";
 import TextBox from "./TextBox";
 
 const footerStyle: IStyleDeclaration = {
@@ -15,13 +14,23 @@ const linkStyle: IStyleDeclaration = {
     textAlign: "right"
 };
 
-export default function EmailFooter<T>(email: IEmailModel<T>): XNode[] {
+export interface IEmailFooter {
+    unsubscribeLink?: string;
+    trackUrl?: string;
+}
+
+export default function EmailFooter<T>({
+    unsubscribeLink,
+    trackUrl,
+    ... a
+}: IEmailFooter): XNode[] {
     return <table
-        style={footerStyle}>
+        style={footerStyle}
+        { ... a}>
         <tr>
             <td>
-                {email.unsubscribeLink
-                    ? <a href={email.unsubscribeLink} target="_blank">Unsubscribe</a>
+                {unsubscribeLink
+                    ? <a href={unsubscribeLink} target="_blank">Unsubscribe</a>
                     : ""}
             </td>
             <td style="text-align: right">
@@ -30,8 +39,8 @@ export default function EmailFooter<T>(email: IEmailModel<T>): XNode[] {
         </tr>
         <tr>
             <td>
-                {email.trackUrl
-                ? <img src={email.trackUrl} alt="none" style="max-width: 1px; max-height: 1px"/>
+                {trackUrl
+                ? <img src={trackUrl} alt="none" style="max-width: 1px; max-height: 1px"/>
                 : <span style-display="none">tracking</span>}
                 <div style="color: gray; font-size: 70%">$$EMAILID$$</div>
             </td>

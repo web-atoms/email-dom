@@ -2,25 +2,28 @@ import XNode from "@web-atoms/core/dist/core/XNode";
 import IXStyle from "../core/IXStyle";
 
 import StyleHelper from "./StyleHelper";
+import IEmailElementStyle from "../style/IEmailElementStyle";
 
-export interface IBoxParameter {
+export interface IBoxParameter extends IEmailElementStyle {
     width?: string;
     height?: string;
     border?: string;
-    className?: string;
-    children?: XNode[];
-    style?: IXStyle;
 }
 
-export default function Table(model: IBoxParameter, ... children: XNode[]): XNode {
-    model.children = model.children || children;
+export default function Table({
+    width,
+    height,
+    border,
+    style,
+    ... a
+}: IBoxParameter, ... children: XNode[]): XNode {
     return <table
-        width={model.width}
-        height={model.height}
-        border={model.border}
-        style={StyleHelper.styleToString(model.style)}>
+        width={width}
+        height={height}
+        border={border}
+        style={StyleHelper.styleToString(style)}>
         <tbody>
-            {model.children}
+            {...children}
         </tbody>
     </table>;
 }

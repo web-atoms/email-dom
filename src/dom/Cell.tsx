@@ -2,20 +2,24 @@ import XNode from "@web-atoms/core/dist/core/XNode";
 import IXStyle from "../core/IXStyle";
 
 import StyleHelper from "./StyleHelper";
+import IEmailElementStyle from "../style/IEmailElementStyle";
 
-export interface IITem {
+export interface IITem extends IEmailElementStyle {
     colSpan?: string;
     rowSpan?: string;
-    style?: IXStyle;
-    children?: XNode[];
 }
 
-export default function Cell(prop: IITem, ... children: XNode[]): XNode {
-    prop.children  = prop.children || children;
+export default function Cell({
+    rowSpan,
+    colSpan,
+    style,
+    ... a
+}: IITem, ... children: XNode[]): XNode {
     return <td
-        rowSpan={prop.rowSpan || undefined}
-        colSpan={prop.colSpan || undefined}
-        style={ StyleHelper.styleToString(prop.style) }>
-        {prop.children}
+        rowSpan={rowSpan}
+        colSpan={colSpan}
+        style={ StyleHelper.styleToString(style) }
+        {... a}>
+        {... children}
     </td>;
 }

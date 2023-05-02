@@ -1,28 +1,32 @@
 import XNode from "@web-atoms/core/dist/core/XNode";
 import { IStyleDeclaration } from "@web-atoms/core/dist/web/styles/IStyleDeclaration";
 import { CssNumber, cssNumberToString } from "@web-atoms/core/dist/web/styles/StyleBuilder";
-import IXStyle, { mergeStyle } from "../core/IXStyle";
+import IXStyle from "../core/IXStyle";
+import IEmailElementStyle from "../style/IEmailElementStyle";
+import StyleHelper from "./StyleHelper";
+import mergeStyle from "../style/mergeStyle";
 
-export interface ITextModel {
+export interface ITextModel extends IEmailElementStyle {
     text: string;
     width: CssNumber;
-    style?: IXStyle;
 }
 
-export default function EllipsisText(model: ITextModel): XNode {
+export default function EllipsisText({ text, width, style, ... a }: ITextModel, ... nodes: XNode[]): XNode {
 
-    model.style = mergeStyle({
-        maxWidth: (cssNumberToString(model.width, "px")),
+    style = mergeStyle({
+        maxWidth: (cssNumberToString(width, "px")),
         display: "inline-block",
         whiteSpace: "nowrap",
         overflow: "hidden",
         textOverflow: "ellipsis",
-        }, model.style
+        }, style
     );
 
     return <span
-        style={model.style}
-        title={model.text}>
-        {model.text}
+        style={StyleHelper.styleToString(style)}
+        title={text}
+        { ... a}>
+        {text}
+        {... nodes}
     </span>;
 }

@@ -1,17 +1,20 @@
 import XNode from "@web-atoms/core/dist/core/XNode";
-import IXStyle, { mergeStyle } from "../core/IXStyle";
+import IXStyle from "../core/IXStyle";
+import IEmailElementStyle from "../style/IEmailElementStyle";
+import StyleHelper from "./StyleHelper";
+import mergeStyle from "../style/mergeStyle";
 
-export interface IBold {
-    style?: IXStyle;
-    children?: XNode[];
+export interface IBold extends IEmailElementStyle {
 }
 
-export default function Bold(bold: IBold, ... children: XNode[]): XNode {
-    bold.children = bold.children || children;
-    bold.style = mergeStyle({
+export default function Bold( {
+    style,
+    ... a
+}: IBold, ... children: XNode[]): XNode {
+    style = mergeStyle({
         fontWeight: "bold"
-    }, bold.style);
-    return <span style={bold.style}>
-        {bold.children}
+    }, style);
+    return <span style={StyleHelper.styleToString(style)} { ... a}>
+        {... children}
     </span>;
 }

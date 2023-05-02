@@ -1,7 +1,10 @@
 import XNode from "@web-atoms/core/dist/core/XNode";
-import IXStyle, { mergeStyle } from "../core/IXStyle";
+import IXStyle from "../core/IXStyle";
+import mergeStyle from "../style/mergeStyle";
+import IEmailElementStyle from "../style/IEmailElementStyle";
+import StyleHelper from "./StyleHelper";
 
-export interface IBox {
+export interface IBox extends IEmailElementStyle {
     borderTop?: string;
     borderBottom?: string;
     borderLeft?: string;
@@ -11,33 +14,41 @@ export interface IBox {
     align?: "center" | "left" | "right" | "justify";
     padding?: string;
     margin?: string;
-    style?: IXStyle;
-    children?: XNode[];
 }
 
-export default function TextBox(box: IBox, ... children: XNode[]): XNode {
-    box.children = box.children || children;
-    const style = box.style;
+export default function TextBox({
+    style,
+    border,
+    borderBottom,
+    borderLeft,
+    borderRight,
+    borderTop,
+    radius,
+    align = "center",
+    margin = "0",
+    padding = "10px",
+    ... a
+}: IBox, ... children: XNode[]): XNode {
 
-    box.style = {
-        border: box.border,
-        borderTop: box.borderTop,
-        borderLeft: box.borderLeft,
-        borderRight: box.borderRight,
-        borderBottom: box.borderBottom,
-        borderRadius: box.radius ? (typeof box.radius === "number" ? ( `${box.radius}px` ) : box.radius ) : null,
-        textAlign: box.align || "center",
-        margin: box.margin || "0",
-        padding: box.padding || "10px"
-    };
+    style = mergeStyle({
+        border,
+        borderTop,
+        borderLeft,
+        borderRight,
+        borderBottom,
+        borderRadius: radius ? (typeof radius === "number" ? ( `${radius}px` ) : radius ) : null,
+        textAlign: align,
+        margin: margin,
+        padding: padding
+    }, style);
 
-    if (box.style.borderRadius) {
-        box.style.padding = box.style.borderRadius;
+    if (style.borderRadius) {
+        style.padding = style.borderRadius;
     }
 
-    box.style = mergeStyle(box.style, style);
+    style = mergeStyle(style, style);
 
-    return <div style={box.style}>
-        {box.children}
+    return <div style={StyleHelper.styleToString(style)} { ... a}>
+        {...children}
     </div>;
 }

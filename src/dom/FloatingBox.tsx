@@ -1,32 +1,36 @@
 import XNode from "@web-atoms/core/dist/core/XNode";
-import IXStyle, { mergeStyle } from "../core/IXStyle";
+import IEmailElementStyle from "../style/IEmailElementStyle";
+import StyleHelper from "./StyleHelper";
+import mergeStyle from "../style/mergeStyle";
 
-export interface IBox {
+export interface IBox extends IEmailElementStyle {
     width: string;
     height: string;
     margin?: string;
     padding?: string;
-    style?: IXStyle;
-    children?: XNode[];
 }
 
-export default function FloatingBox(box: IBox, ... children: XNode[]): XNode {
-    box.children = box.children || children;
+export default function FloatingBox({
+    width,
+    height,
+    margin = "5px",
+    padding = "5px",
+    style,
+    ... a
+}: IBox, ... children: XNode[]): XNode {
 
-    box.padding = box.padding || "5px";
-    box.margin = box.margin || "5px";
-
-    box.style = mergeStyle({
-        display: "inline-block",
-        width: box.width,
-        height: box.height,
-        margin: box.margin,
-        padding: box.padding,
-        overflow: "hidden"},
-        box.style
+    style = mergeStyle({
+            display: "inline-block",
+            width,
+            height,
+            margin,
+            padding,
+            overflow: "hidden"
+        },
+        style
     );
 
-    return <div style={box.style}>
-        { box.children }
+    return <div style={StyleHelper.styleToString(style)} { ... a}>
+        { ... children }
     </div>;
 }

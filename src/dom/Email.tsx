@@ -1,70 +1,54 @@
+import XNode from "@web-atoms/core/dist/core/XNode";
 import Cell from "./Cell";
 import EmailFooter from "./EmailFooter";
 import Row from "./Row";
-import StyleHelper, { IStyleSheet } from "./StyleHelper";
+import StyleHelper from "./StyleHelper";
 import Table from "./Table";
+import IEmailElementStyle from "../style/IEmailElementStyle";
+import mergeStyle from "../style/mergeStyle";
 
-export interface IEmailModelParameter<T> {
+export interface IEmailModelParameter extends IEmailElementStyle {
     width?: string;
-    email: IEmailModel<T>;
-    children?: XNode[];
-    styleSheet?: IStyleSheet;
-    bodyStyle?: IXStyle;
     emailBox?: boolean;
+    unsubscribeLink?: string;
 }
 
-export default function Email<T>(
-    model: IEmailModelParameter<T>,
+export default function Email(
+    {
+        width,
+        emailBox,
+        unsubscribeLink,
+        style,
+        ... a
+    }: IEmailModelParameter,
     ... children: XNode[]
 ): XNode {
-    model.children = model.children || children;
-    model.bodyStyle =  mergeStyle({
+
+    style =  mergeStyle({
+        width: "100%",
+        margin: "0",
+        padding: "0",
+        webkitTextSizeAdjust: "100%",
+        // @ts-expect-error
+        msTextSizeAdjust: "100%",
         fontFamily: "Arial",
-        width: model.width || "600px"}
-        , model.bodyStyle
+        // @ts-expect-error
+        width: width || "600px"
+    }
+        , style
     );
 
-    // if we are in browser... let's send only div
-    if (typeof window !== "undefined") {
-        return <div style={ model.bodyStyle }>
-            {model.children}
-            <EmailFooter unsubscribeLink={model.email.unsubscribeLink}/>
-        </div>;
-    }
-
-    return <html
-        xmlns="http://www.w3.org/1999/xhtml">
-        <head>
-            <meta httpEquiv="Content-Type" content="text/html; charset=utf-8" />
-            <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-            <title>{model.email.subject}</title>
-            {model.styleSheet && <style type="text/css">{StyleHelper.styleToCSS(model.styleSheet)}</style>}
-        </head>
-        {model.emailBox ? <body
-            style={ mergeStyle({
-                width: "100%",
-                margin: 0,
-                padding: 0,
-                webkitTextSizeAdjust: "100%",
-                msTextSizeAdjust: "100%",
-            }, model.bodyStyle) }>
+    return <div
+            style={StyleHelper.styleToString(style)}
+            { ... a}>
             <Table width="600px" height="100%">
                 <Row>
                     <Cell>
-                        {model.children}
+                        {...children}
                     </Cell>
                 </Row>
             </Table>
-            <EmailFooter unsubscribeLink={model.email.unsubscribeLink}/>
-        </body>
-        :
-        <body style={ model.bodyStyle }>
-        { model.children }
-        <EmailFooter unsubscribeLink={model.email.unsubscribeLink}/>
-
-        </body>
-        }
-
-    </html> ;
+            <EmailFooter unsubscribeLink={unsubscribeLink}/>
+        </div>;
 
 }
