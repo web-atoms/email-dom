@@ -43,8 +43,8 @@ export default function HeaderBox(
         padding,
         borderRadius: radius,
         margin,
-        backgroundColor: headerBgColor.toString(),
-        color: headerColor.toString(),
+        backgroundColor: headerBgColor?.toString(),
+        color: headerColor?.toString(),
         }, headerStyle
     );
 
@@ -52,8 +52,8 @@ export default function HeaderBox(
         padding,
         borderRadius: radius,
         margin,
-        backgroundColor: footerBgColor.toString(),
-        color: footerColor.toString(),
+        backgroundColor: footerBgColor?.toString(),
+        color: footerColor?.toString(),
         }, footerStyle
     );
 

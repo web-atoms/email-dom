@@ -17,11 +17,15 @@ const linkStyle: IStyleDeclaration = {
 export interface IEmailFooter {
     unsubscribeLink?: string;
     trackUrl?: string;
+    poweredBy?: string;
+    poweredByLink?: string;
 }
 
 export default function EmailFooter<T>({
     unsubscribeLink,
     trackUrl,
+    poweredBy = "Powered by Web Atoms",
+    poweredByLink = "https://www.webatoms.in/",
     ... a
 }: IEmailFooter): XNode[] {
     return <table
@@ -34,7 +38,7 @@ export default function EmailFooter<T>({
                     : ""}
             </td>
             <td style="text-align: right">
-                <a style={linkStyle} href="https://800casting.com"  target="_blank">Powered by 800Casting</a>
+                <a style={linkStyle} href={poweredBy}  target="_blank">{poweredByLink}</a>
             </td>
         </tr>
         <tr>
