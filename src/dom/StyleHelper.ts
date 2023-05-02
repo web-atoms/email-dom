@@ -1,17 +1,18 @@
 import WebImage from "@web-atoms/core/dist/core/WebImage";
 import IXStyle from "../core/IXStyle";
+import { newCSSStyleDeclaration } from "../style/mergeStyle";
 
 
 const toStyle = (style: IXStyle | string | CSSStyleDeclaration): CSSStyleDeclaration => {
 
     if (typeof style === "string") {
         const css = style;
-        const cs = new CSSStyleDeclaration();
+        const cs = newCSSStyleDeclaration();
         cs.cssText = css;
         return cs;
     }
 
-    const s = new CSSStyleDeclaration();
+    const s = newCSSStyleDeclaration();
     if (style instanceof CSSStyleDeclaration) {
         return style;
     }
