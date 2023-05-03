@@ -13,6 +13,7 @@ export interface IEmailModelParameter extends IEmailElementStyle {
     unsubscribeLink?: string;
     poweredBy?: string;
     poweredByLink?: string;
+    refID?: string;
 }
 
 export default function Email(
@@ -23,6 +24,7 @@ export default function Email(
         poweredBy,
         poweredByLink,
         style,
+        refID = "[$refid$]"
         ... a
     }: IEmailModelParameter,
     ... children: XNode[]
@@ -56,6 +58,7 @@ export default function Email(
                 unsubscribeLink={unsubscribeLink}
                 poweredBy={poweredBy}
                 poweredByLink={poweredByLink}
+                refID={refID}
                 />
         </div>;
 

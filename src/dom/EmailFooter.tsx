@@ -19,11 +19,13 @@ export interface IEmailFooter {
     trackUrl?: string;
     poweredBy?: string;
     poweredByLink?: string;
+    refID?: string;
 }
 
 export default function EmailFooter<T>({
     unsubscribeLink,
     trackUrl,
+    refID,
     poweredBy = "Powered by Web Atoms",
     poweredByLink = "https://www.webatoms.in/",
     ... a
@@ -46,7 +48,7 @@ export default function EmailFooter<T>({
                 {trackUrl
                 ? <img src={trackUrl} alt="none" style="max-width: 1px; max-height: 1px"/>
                 : <span style-display="none">tracking</span>}
-                <div style="color: gray; font-size: 70%">$$EMAILID$$</div>
+                { refID && <div style="color: gray; font-size: 70%">{refID}</div>}
             </td>
         </tr>
     </table>;
