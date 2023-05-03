@@ -24,7 +24,7 @@ export default function Email(
         poweredBy,
         poweredByLink,
         style,
-        refID = "[$refid$]"
+        refID = "[$refid$]",
         ... a
     }: IEmailModelParameter,
     ... children: XNode[]
