@@ -11,6 +11,8 @@ export interface IEmailModelParameter extends IEmailElementStyle {
     width?: string;
     emailBox?: boolean;
     unsubscribeLink?: string;
+    poweredBy?: string;
+    poweredByLink?: string;
 }
 
 export default function Email(
@@ -18,6 +20,8 @@ export default function Email(
         width,
         emailBox,
         unsubscribeLink,
+        poweredBy,
+        poweredByLink,
         style,
         ... a
     }: IEmailModelParameter,
@@ -48,7 +52,11 @@ export default function Email(
                     </Cell>
                 </Row>
             </Table>
-            <EmailFooter unsubscribeLink={unsubscribeLink}/>
+            <EmailFooter
+                unsubscribeLink={unsubscribeLink}
+                poweredBy={poweredBy}
+                poweredByLink={poweredByLink}
+                />
         </div>;
 
 }
