@@ -31,7 +31,8 @@ export default function Image({
     if (link) {
 
         linkStyle = mergeStyle({
-            border: "none"
+            border: "none",
+            textDecoration: "none"
         }, linkStyle);
 
         return <a
