@@ -9,13 +9,27 @@ export default function mergeStyle(... styles: Partial<CSSStyleDeclaration>[]) {
         if (!iterator) {
             continue;
         }
-        for (let index = 0; index < iterator.length; index++) {
-            const name = iterator[index];
-            let value = iterator[name]?.toString();
-            if (value === void 0 || value === null || value === "") {
-                continue;
+
+        if (iterator instanceof CSSStyleDeclaration) {
+            for (let index = 0; index < iterator.length; index++) {
+                const name = iterator[index];
+                let value = iterator[name]?.toString();
+                if (value === void 0 || value === null || value === "") {
+                    continue;
+                }
+                s[name] = value;
             }
-            s[name] = value;
+            continue;
+        }
+
+        for (const key in iterator) {
+            if (Object.prototype.hasOwnProperty.call(iterator, key)) {
+                const element = iterator[key]?.toString();
+                if (!element) {
+                    continue;
+                }
+                s[key] = element;
+            }
         }
     }
     return s;
