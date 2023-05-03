@@ -18,7 +18,7 @@ const toStyle = (style: IXStyle | string | CSSStyleDeclaration): CSSStyleDeclara
     }
     for (const key in style) {
         if (Object.prototype.hasOwnProperty.call(style, key)) {
-            const element = style[key];
+            const element = style[key]?.toString();
             if (element === void 0 || element === null || element === "") {
                 continue;
             }
@@ -44,17 +44,24 @@ export default class StyleHelper {
             const ps = toStyle(props);
             for (let index = 0; index < ps.length; index++) {
                 const key = ps[index];
-                let value = ps[key];
-                if (value === undefined) {
+                let value = ps[key]?.toString();
+                if (value === void 0 || value === null || value === "") {
                     continue;
                 }
-                if (value === null) {
-                    continue;
-                }
-                if(value === "") {
-                    continue;
-                }
-                cs[key] = value.toString();
+                cs[key] = value;
+            }
+        }
+
+        // delete all empty items..
+        const allKeys = [];
+        for (let index = 0; index < cs.length; index++) {
+            const key = cs[index];
+            allKeys.push(key);
+        }
+
+        for (const key of allKeys) {
+            if(!cs[key]) {
+                cs.removeProperty(key);
             }
         }
 
