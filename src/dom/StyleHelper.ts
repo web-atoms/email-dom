@@ -19,6 +19,9 @@ const toStyle = (style: IXStyle | string | CSSStyleDeclaration): CSSStyleDeclara
     for (const key in style) {
         if (Object.prototype.hasOwnProperty.call(style, key)) {
             const element = style[key];
+            if (element === void 0 || element === null || element === "") {
+                continue;
+            }
             s[key] = element;
         }
     }
@@ -46,7 +49,10 @@ export default class StyleHelper {
                     continue;
                 }
                 if (value === null) {
-                    value = "";
+                    continue;
+                }
+                if(value === "") {
+                    continue;
                 }
                 cs[key] = value.toString();
             }
