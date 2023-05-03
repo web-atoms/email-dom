@@ -58,7 +58,7 @@ export default function HeaderBox(
     );
 
     return <section style={StyleHelper.styleToString(style)} { ... a}>
-        {header && <header style={headerStyle}>{ header }</header>}
+        {header && <header style={StyleHelper.styleToString(headerStyle)}>{ header }</header>}
         <div
             style-padding={padding}
             style-border={border}>
