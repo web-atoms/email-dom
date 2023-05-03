@@ -38,6 +38,7 @@ export default function Button({
         target={target}
         style={StyleHelper.styleToString(style)}
         {... a}>
+        { text }
         {... children}
     </a>;
 }
