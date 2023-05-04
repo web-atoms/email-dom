@@ -4,7 +4,7 @@ import StyleHelper from "./dom/StyleHelper";
 export default function DomToString(node: XNode) {
 
     const div = document.createElement("div");
-    render(div, node);
+    render(div, <div>{ node }</div>);
     return div.innerHTML;
 
 }
@@ -69,7 +69,7 @@ function render(div: HTMLDivElement, node: XNode) {
         }
         const child = document.createElement(iterator.name);
         div.appendChild(child);
-        render(div, child);
+        render(child, node);
     }
 
 }
