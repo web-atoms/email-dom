@@ -69,7 +69,7 @@ function render(div: HTMLDivElement, node: XNode) {
         }
         const child = document.createElement(iterator.name);
         div.appendChild(child);
-        render(child, node);
+        render(child, iterator);
     }
 
 }
