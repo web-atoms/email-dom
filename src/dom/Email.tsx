@@ -14,7 +14,7 @@ export interface IEmailModelParameter extends IEmailElementStyle {
     poweredBy?: string;
     poweredByLink?: string;
     refID?: string;
-    backgroundColor: string;
+    backgroundColor?: string;
 }
 
 export default function Email(
