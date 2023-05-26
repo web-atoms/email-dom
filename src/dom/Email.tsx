@@ -14,6 +14,7 @@ export interface IEmailModelParameter extends IEmailElementStyle {
     poweredBy?: string;
     poweredByLink?: string;
     refID?: string;
+    backgroundColor: string;
 }
 
 export default function Email(
@@ -24,6 +25,7 @@ export default function Email(
         poweredBy,
         poweredByLink,
         style,
+        backgroundColor,
         refID = "[$refid$]",
         ... a
     }: IEmailModelParameter,
@@ -33,7 +35,7 @@ export default function Email(
     style =  mergeStyle({
         width: "100%",
         margin: "0",
-        padding: "0",
+        padding: "10px",
         webkitTextSizeAdjust: "100%",
         // @ts-expect-error
         msTextSizeAdjust: "100%",
@@ -49,7 +51,10 @@ export default function Email(
     const bodyStyle = mergeStyle({
         width: width || "600px",
         marginLeft: "auto",
-        marginRight: "auto"
+        marginRight: "auto",
+        backgroundColor,
+        borderRadius: "10px",
+        padding: "10px",
     });
 
     return <div
