@@ -39,27 +39,37 @@ export default function Email(
         msTextSizeAdjust: "100%",
         fontFamily: "Arial",
         // @ts-expect-error
-        width: width || "600px"
+        width: "100%",
+        backgroundColor: "#808080",
+        textAlign: "center",
     }
         , style
     );
 
+    const bodyStyle = mergeStyle({
+        width: width || "600px",
+        marginLeft: "auto",
+        marginRight: "auto"
+    });
+
     return <div
             style={StyleHelper.styleToString(style)}
             { ... a}>
-            <Table width="600px" height="100%">
-                <Row>
-                    <Cell>
-                        {...children}
-                    </Cell>
-                </Row>
-            </Table>
-            <EmailFooter
-                unsubscribeLink={unsubscribeLink}
-                poweredBy={poweredBy}
-                poweredByLink={poweredByLink}
-                refID={refID}
-                />
+            <div style={StyleHelper.styleToString(bodyStyle)}>
+                <Table width="100%" height="100%">
+                    <Row>
+                        <Cell>
+                            {...children}
+                        </Cell>
+                    </Row>
+                </Table>
+                <EmailFooter
+                    unsubscribeLink={unsubscribeLink}
+                    poweredBy={poweredBy}
+                    poweredByLink={poweredByLink}
+                    refID={refID}
+                    />
+            </div>
         </div>;
 
 }
