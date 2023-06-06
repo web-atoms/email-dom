@@ -32,6 +32,11 @@ function render(div: HTMLDivElement, node: XNode) {
                     continue;
                 }
 
+                if (key === "text") {
+                    div.textContent = element;
+                    continue;
+                }
+
                 if (key.startsWith("style") && key.length > 5) {
                     div.style[key.substring(5)] = element;
                     continue;
