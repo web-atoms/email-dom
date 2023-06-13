@@ -8,7 +8,7 @@ import IEmailElementStyle from "../style/IEmailElementStyle";
 import mergeStyle from "../style/mergeStyle";
 
 export interface IEmailModelParameter extends IEmailElementStyle {
-    width?: string;
+    maxWidth?: string;
     emailBox?: boolean;
     unsubscribeLink?: string;
     poweredBy?: string;
@@ -19,7 +19,7 @@ export interface IEmailModelParameter extends IEmailElementStyle {
 
 export default function Email(
     {
-        width,
+        maxWidth,
         emailBox,
         unsubscribeLink,
         poweredBy,
@@ -51,7 +51,7 @@ export default function Email(
     );
 
     bodyStyle = mergeStyle({
-        width: width || "600px",
+        maxWidth: maxWidth || "700px",
         marginLeft: "auto",
         marginRight: "auto",
         borderRadius: "10px",
