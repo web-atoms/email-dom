@@ -49,7 +49,8 @@ function render(div: HTMLDivElement, node: XNode) {
                     div.dataset[key.substring(4)] = element;
                     continue;
                 }
-                div[key] = element;
+                // div[key] = element;
+                div.setAttribute(key, element);
             }
         }
     }
