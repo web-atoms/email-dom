@@ -32,9 +32,13 @@ function render(div: HTMLDivElement, node: XNode) {
                     continue;
                 }
 
-                if (key === "text") {
-                    div.textContent = element;
-                    continue;
+                switch(key) {
+                    case "text":
+                        div.textContent = element;
+                        continue;
+                    case "innerHTML":
+                        div.innerHTML = element;
+                        continue;
                 }
 
                 if (key.startsWith("style") && key.length > 5) {
@@ -49,7 +53,6 @@ function render(div: HTMLDivElement, node: XNode) {
                     div.dataset[key.substring(4)] = element;
                     continue;
                 }
-                // div[key] = element;
                 div.setAttribute(key, element);
             }
         }
