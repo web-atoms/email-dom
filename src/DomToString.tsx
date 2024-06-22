@@ -40,7 +40,10 @@ function render(div: HTMLDivElement, node: XNode) {
                         div.innerHTML = element;
                         continue;
                 }
-
+                if (key.startsWith("styler-")) {
+                    div.setAttribute(key, element);
+                    continue;
+                }
                 if (key.startsWith("style") && key.length > 5) {
                     div.style[key.substring(5)] = element;
                     continue;
