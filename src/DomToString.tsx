@@ -4,11 +4,11 @@ import StyleHelper from "./dom/StyleHelper";
 export default function DomToString(node: XNode) {
 
     const div = document.createElement("div");
-    render(div, <div>{ node }</div>);
+    DomToElement(div, <div>{ node }</div>);
     return div.innerHTML;
-
 }
-function render(div: HTMLDivElement, node: XNode) {
+
+export function DomToElement(div: HTMLDivElement, node: XNode) {
 
     while(typeof node.name === "function") {
         node = node.name(node.attributes, ... node.children);
@@ -81,7 +81,7 @@ function render(div: HTMLDivElement, node: XNode) {
         }
         const child = document.createElement(iterator.name);
         div.appendChild(child);
-        render(child, iterator);
+        DomToElement(child, iterator);
     }
 
 }
