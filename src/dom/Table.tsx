@@ -1,8 +1,8 @@
-import XNode from "@web-atoms/core/dist/core/XNode";
-import IXStyle from "../core/IXStyle";
+import XNode from "@web-atoms/core/dist/core/XNode.js"
+import IXStyle from "../core/IXStyle.js"
 
-import StyleHelper from "./StyleHelper";
-import IEmailElementStyle from "../style/IEmailElementStyle";
+import StyleHelper from "./StyleHelper.js"
+import IEmailElementStyle from "../style/IEmailElementStyle.js"
 
 export interface IBoxParameter extends IEmailElementStyle {
     width?: string;

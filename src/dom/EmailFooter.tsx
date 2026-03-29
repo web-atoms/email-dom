@@ -1,7 +1,7 @@
-import XNode from "@web-atoms/core/dist/core/XNode";
-import { IStyleDeclaration } from "@web-atoms/core/dist/web/styles/IStyleDeclaration";
+import XNode from "@web-atoms/core/dist/core/XNode.js"
+import { IStyleDeclaration } from "@web-atoms/core/dist/web/styles/IStyleDeclaration.js"
 
-import TextBox from "./TextBox";
+import TextBox from "./TextBox.js"
 
 const footerStyle: IStyleDeclaration = {
     margin: "10px 0 10px",

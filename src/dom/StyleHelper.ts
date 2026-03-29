@@ -1,6 +1,6 @@
-import WebImage from "@web-atoms/core/dist/core/WebImage";
-import IXStyle from "../core/IXStyle";
-import { newCSSStyleDeclaration } from "../style/mergeStyle";
+import WebImage from "@web-atoms/core/dist/core/WebImage.js"
+import IXStyle from "../core/IXStyle.js"
+import { newCSSStyleDeclaration } from "../style/mergeStyle.js"
 
 
 const toStyle = (style: IXStyle | string | CSSStyleDeclaration): CSSStyleDeclaration => {

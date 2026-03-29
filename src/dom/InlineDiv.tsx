@@ -1,8 +1,8 @@
-import XNode from "@web-atoms/core/dist/core/XNode";
+import XNode from "@web-atoms/core/dist/core/XNode.js"
 
-import StyleHelper from "./StyleHelper";
-import IEmailElementStyle from "../style/IEmailElementStyle";
-import mergeStyle from "../style/mergeStyle";
+import StyleHelper from "./StyleHelper.js"
+import IEmailElementStyle from "../style/IEmailElementStyle.js"
+import mergeStyle from "../style/mergeStyle.js"
 
 export interface IInlineDivModel extends IEmailElementStyle {
 }

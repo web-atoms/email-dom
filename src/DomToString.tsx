@@ -1,5 +1,5 @@
-import XNode from "@web-atoms/core/dist/core/XNode";
-import StyleHelper from "./dom/StyleHelper";
+import XNode from "@web-atoms/core/dist/core/XNode.js"
+import StyleHelper from "./dom/StyleHelper.js"
 
 export default function DomToString(node: XNode) {
 

@@ -1,11 +1,11 @@
-import XNode from "@web-atoms/core/dist/core/XNode";
-import Cell from "./Cell";
-import EmailFooter from "./EmailFooter";
-import Row from "./Row";
-import StyleHelper from "./StyleHelper";
-import Table from "./Table";
-import IEmailElementStyle from "../style/IEmailElementStyle";
-import mergeStyle from "../style/mergeStyle";
+import XNode from "@web-atoms/core/dist/core/XNode.js"
+import Cell from "./Cell.js"
+import EmailFooter from "./EmailFooter.js"
+import Row from "./Row.js"
+import StyleHelper from "./StyleHelper.js"
+import Table from "./Table.js"
+import IEmailElementStyle from "../style/IEmailElementStyle.js"
+import mergeStyle from "../style/mergeStyle.js"
 
 export interface IEmailModelParameter extends IEmailElementStyle {
     maxWidth?: string;

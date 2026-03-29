@@ -1,6 +1,6 @@
 {
   "name": "@web-atoms/email-dom",
-  "version": "1.0.33",
+  "version": "1.1.1",
   "description": "",
   "main": "index.js",
   "scripts": {
@@ -18,8 +18,11 @@
   },
   "homepage": "https://github.com/web-atoms/email-dom#readme",
   "dependencies": {
-    "@web-atoms/core": "^2.2.83",
-    "reflect-metadata": "^0.1.13",
-    "tslib": "^2.5.0"
+    "@web-atoms/core": "^2.6.25",
+    "reflect-metadata": "^0.2.2",
+    "tslib": "^2.8.1"
+  },
+  "devDependencies": {
+    "@package-verse/esmpack": "^1.0.36"
   }
 }

@@ -1,8 +1,8 @@
-import XNode from "@web-atoms/core/dist/core/XNode";
-import IXStyle from "../core/IXStyle";
-import mergeStyle from "../style/mergeStyle";
-import IEmailElementStyle from "../style/IEmailElementStyle";
-import StyleHelper from "./StyleHelper";
+import XNode from "@web-atoms/core/dist/core/XNode.js"
+import IXStyle from "../core/IXStyle.js"
+import mergeStyle from "../style/mergeStyle.js"
+import IEmailElementStyle from "../style/IEmailElementStyle.js"
+import StyleHelper from "./StyleHelper.js"
 
 export interface IBox extends IEmailElementStyle {
     borderTop?: string;

@@ -1,10 +1,10 @@
-import Colors, { ColorItem } from "@web-atoms/core/dist/core/Colors";
-import XNode from "@web-atoms/core/dist/core/XNode";
-import { IStyleDeclaration } from "@web-atoms/core/dist/web/styles/IStyleDeclaration";
-import IXStyle from "../core/IXStyle";
-import IEmailElementStyle from "../style/IEmailElementStyle";
-import StyleHelper from "./StyleHelper";
-import mergeStyle from "../style/mergeStyle";
+import Colors, { ColorItem } from "@web-atoms/core/dist/core/Colors.js"
+import XNode from "@web-atoms/core/dist/core/XNode.js"
+import { IStyleDeclaration } from "@web-atoms/core/dist/web/styles/IStyleDeclaration.js"
+import IXStyle from "../core/IXStyle.js"
+import IEmailElementStyle from "../style/IEmailElementStyle.js"
+import StyleHelper from "./StyleHelper.js"
+import mergeStyle from "../style/mergeStyle.js"
 
 export interface IHeaderBox extends IEmailElementStyle {
     padding?: string;

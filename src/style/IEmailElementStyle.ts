@@ -1,4 +1,4 @@
-import IXStyle from "../core/IXStyle";
+import IXStyle from "../core/IXStyle.js"
 
 export default interface IEmailElementStyle {
     style?: IXStyle;
