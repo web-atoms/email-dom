@@ -8,9 +8,12 @@
     "postversion": "git push --follow-tags",
     "push": "git add -A && git commit -m \"dep vb\" && npm version patch"
   },
+  "esm": {
+    "dist": "dist-esm"
+  },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/web-atoms/email-dom.git"
+    "url": "https://github.com/web-atoms/email-dom"
   },
   "author": "",
   "license": "ISC",
